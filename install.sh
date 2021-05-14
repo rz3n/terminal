@@ -60,8 +60,9 @@ main() {
   fi
 
   # vimrc
-  get_fimrc
+  get_vimrc
 
+  fish
 }
 
 
