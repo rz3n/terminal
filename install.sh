@@ -55,7 +55,7 @@ get_vimrc() {
   if [ -d "$HOME/.config/nvim" ]; then
     wget -O $HOME/.config/nvim/init.vim https://raw.githubusercontent.com/$REPO/$BRANCH/init.vim
   else
-    mkdir -P $HOME/.config/nvim
+    mkdir -p $HOME/.config/nvim
     wget -O $HOME/.config/nvim/init.vim https://raw.githubusercontent.com/$REPO/$BRANCH/init.vim
   fi
 
@@ -74,7 +74,7 @@ main() {
     get_fish_config
   else
     echo "creating fish directory"
-    mkdir -P $HOME/.config/fish/{aliases,completions,functions}
+    mkdir -p $HOME/.config/fish/{aliases,completions,functions}
     get_fish_config
   fi
 
