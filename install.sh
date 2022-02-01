@@ -51,6 +51,14 @@ get_fish_config() {
 
 get_vimrc() {
   wget -O $HOME/.vimrc https://raw.githubusercontent.com/$REPO/$BRANCH/vimrc
+
+  if [ -d "$HOME/.config/nvim" ]; then
+    wget -O $HOME/.config/nvim/init.vim https://raw.githubusercontent.com/$REPO/$BRANCH/init.vim
+  else
+    mkdir -P $HOME/.config/nvim
+    wget -O $HOME/.config/nvim/init.vim https://raw.githubusercontent.com/$REPO/$BRANCH/init.vim
+  fi
+
 }
 
 get_starship() {
