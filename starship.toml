@@ -18,71 +18,72 @@ add_newline = false
 disabled = true
 
 [character]
-success_symbol = "[➜](bold green)"
+success_symbol = "[>](bold green)"
+error_symbol = "[x](bold red)"
+vicmd_symbol = "[<](bold green)"
 
 [aws]
-symbol = "  "
+symbol = "aws "
 
 [cmd_duration]
 min_time = 10_000
-format = "  [$duration]($style)"
-
-[conda]
-symbol = " "
+format = " [$duration]($style)"
 
 [dart]
 symbol = " "
 
 [directory]
 format = "[$path]($style)[$lock_symbol]($lock_style) "
-home_symbol = " "
-read_only = " "
+home_symbol = "~ "
 style = "bold cyan dimmed"
 truncate_to_repo = true
 truncation_length = 4
 
 [docker_context]
-symbol = " "
+symbol = "docker "
 
 [git_branch]
 format = "[$symbol$branch]($style) "
 style = "bold green"
-symbol = " "
+symbol = "git "
 truncation_symbol = ""
 
+[git_status]
+ahead = ">"
+behind = "<"
+diverged = "<>"
+renamed = "r"
+deleted = "x"
+
 [golang]
-symbol = " "
+symbol = "go "
 
 [java]
-symbol = " "
+symbol = "java "
 
 [memory_usage]
-symbol = " "
-
-[nix_shell]
-symbol = " "
+symbol = "mem "
 
 [package]
 disabled = true
-symbol = " "
 
 [php]
-symbol = " "
+symbol = "php "
 
 [python]
-symbol = " "
+symbol = "python "
 
 [ruby]
-symbol = " "
+symbol = "ruby "
 
 [shlvl]
-symbol = " "
+symbol = ">_ "
 
 [time]
 time_format = "%T"
-format = "🕙 $time($style) "
+format = " $time($style) "
 style = "bright-white"
 disabled = false
 
 [terraform]
-format = "[🏎💨 $version$workspace]($style) "
+format = "[ terraform $version$workspace]($style) "
