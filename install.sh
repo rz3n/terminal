@@ -36,14 +36,25 @@ check_dependencies() {
 }
 
 get_fish_config() {
-  wget -O $FISH_HOME/alias.fish https://raw.githubusercontent.com/$REPO/$BRANCH/fish/alias.fish
-  wget -O $FISH_HOME/colors.fish https://raw.githubusercontent.com/$REPO/$BRANCH/fish/colors.fish
+  wget -O $FISH_HOME/aliases/alpine.fish https://raw.githubusercontent.com/$REPO/$BRANCH/fish/aliases/alpine.fish
+  wget -O $FISH_HOME/aliases/mac.fish https://raw.githubusercontent.com/$REPO/$BRANCH/fish/aliases/mac.fish
+  wget -O $FISH_HOME/aliases/manjaro.fish https://raw.githubusercontent.com/$REPO/$BRANCH/fish/aliases/manjaro.fish
+  wget -O $FISH_HOME/aliases/ubuntu.fish https://raw.githubusercontent.com/$REPO/$BRANCH/fish/aliases/ubuntu.fish
+  wget -O $FISH_HOME/aliases/unix.fish https://raw.githubusercontent.com/$REPO/$BRANCH/fish/aliases/unix.fish
+  
+  wget -O $FISH_HOME/fish_variables https://raw.githubusercontent.com/$REPO/$BRANCH/fish/fish_variables
   wget -O $FISH_HOME/config.fish https://raw.githubusercontent.com/$REPO/$BRANCH/fish/config.fish
-  wget -O $FISH_HOME/env.fish https://raw.githubusercontent.com/$REPO/$BRANCH/fish/env.fish
+  
+  wget -O $FISH_HOME/functions/fish_prompt.fish https://raw.githubusercontent.com/$REPO/$BRANCH/fish/functions/fish_prompt.fish
+  wget -O $FISH_HOME/functions/man.fish https://raw.githubusercontent.com/$REPO/$BRANCH/fish/functions/man.fish
 }
 
 get_vimrc() {
   wget -O $HOME/.vimrc https://raw.githubusercontent.com/$REPO/$BRANCH/vimrc
+}
+
+get_starship() {
+  sh -c "$(curl -fsSL https://starship.rs/install.sh)"
 }
 
 
@@ -55,15 +66,17 @@ main() {
     get_fish_config
   else
     echo "creating fish directory"
-    mkdir -p $HOME/.config/fish
+    mkdir -P $HOME/.config/fish/{aliases,completions,functions}
     get_fish_config
   fi
 
   # vimrc
   get_vimrc
 
+  # starship
+  get_starship
+
   fish
 }
-
 
 main "$@"
