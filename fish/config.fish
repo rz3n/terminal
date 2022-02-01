@@ -40,7 +40,7 @@ end
 
 
 # Docker Completion
-if test -e {$FISH}/completions/docker.fish] -o -L {$FISH}/completions/docker.fish
+if test -e {$FISH}/completions/docker.fish -o -L {$FISH}/completions/docker.fish
   source {$FISH}/completions/docker.fish
 else
   curl -L https://raw.githubusercontent.com/docker/cli/master/contrib/completion/fish/docker.fish -o {$FISH}/completions/docker.fish
