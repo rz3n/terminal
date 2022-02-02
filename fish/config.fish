@@ -5,8 +5,6 @@ set fish_greeting ""
 set --export BIN "~/.bin"
 set --export EDITOR "/usr/bin/nvim"
 set -x FISH ~/.config/fish
-set -x LC_ALL en_US.UTF-8
-set -x LC_CTYPE en_US.UTF-8
 set -U fish_user_paths $BIN $fish_user_paths
 
 
