@@ -1,6 +1,7 @@
 # ~/.config/starship.toml
 
 format = """\
+$shell\
 $directory\
 $git_branch\
 $git_state\
@@ -18,72 +19,80 @@ add_newline = false
 disabled = true
 
 [character]
-success_symbol = "[>](bold green)"
-error_symbol = "[x](bold red)"
-vicmd_symbol = "[<](bold green)"
+success_symbol = "[⟩](bold #98c379)"
+
+[shell]
+bash_indicator = "$_"
+fish_indicator = ""
+zsh_indicator = "z_"
+powershell_indicator = "_"
+unknown_indicator = "mystery shell"
+style = "bold green"
+disabled = true
+
+[hostname]
+format = "@[$hostname](bold green) "
+ssh_only = true
 
 [aws]
-symbol = "aws "
+symbol = "  "
+style = "bold #ff8028"
 
 [cmd_duration]
 min_time = 10_000
-format = " [$duration]($style)"
-
-[dart]
-symbol = " "
+format = " [$duration]($style) "
+style = "#777777"
 
 [directory]
 format = "[$path]($style)[$lock_symbol]($lock_style) "
-home_symbol = "~ "
-style = "bold cyan dimmed"
+home_symbol = "⌂ "
+read_only = " "
+style = "bold #6080eb"
 truncate_to_repo = true
 truncation_length = 4
 
 [docker_context]
-symbol = "docker "
+symbol = " "
+style = "#508bbb"
 
 [git_branch]
 format = "[$symbol$branch]($style) "
-style = "bold green"
-symbol = "git "
+style = "bold #8ecc7d"
+symbol = " "
 truncation_symbol = ""
 
-[git_status]
-ahead = ">"
-behind = "<"
-diverged = "<>"
-renamed = "r"
-deleted = "x"
-
 [golang]
-symbol = "go "
+symbol = " "
 
 [java]
-symbol = "java "
+symbol = " "
 
 [memory_usage]
-symbol = "mem "
+symbol = " "
+
+[nix_shell]
+symbol = " "
 
 [package]
 disabled = true
+symbol = " "
 
 [php]
-symbol = "php "
+symbol = " "
 
 [python]
-symbol = "python "
+symbol = " "
 
 [ruby]
-symbol = "ruby "
+symbol = " "
 
 [shlvl]
-symbol = ">_ "
+symbol = " "
 
 [time]
-time_format = "%T"
-format = " $time($style) "
-style = "bright-white"
+time_format = "%r"
+format = "[჻](fg:#dddddd)[ $time ](fg:#777777)"
 disabled = false
 
 [terraform]
-format = "[ terraform $version$workspace]($style) "
+format = "[🏎💨 $version$workspace]($style) "
