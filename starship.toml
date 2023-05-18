@@ -1,6 +1,8 @@
 # ~/.config/starship.toml
 
 format = """\
+$username\
+$hostname\
 $shell\
 $directory\
 $git_branch\
@@ -19,7 +21,10 @@ add_newline = false
 disabled = true
 
 [character]
-success_symbol = "[⟩](bold #98c379)"
+format = "$symbol "
+success_symbol = "[❯](bold #98c379)"
+error_symbol = "[❯](bold red)"
+#vimcd_symbol = "[❮](bold #98c379)"
 
 [shell]
 bash_indicator = "$_"
@@ -31,8 +36,8 @@ style = "bold green"
 disabled = true
 
 [hostname]
-format = "@[$hostname](bold green) "
-ssh_only = true
+format = "[$hostname](bold green) "
+ssh_only = false
 
 [aws]
 symbol = "  "
@@ -45,7 +50,7 @@ style = "#777777"
 
 [directory]
 format = "[$path]($style)[$lock_symbol]($lock_style) "
-home_symbol = "⌂ "
+home_symbol = " ⌂ "
 read_only = " "
 style = "bold #6080eb"
 truncate_to_repo = true
@@ -96,3 +101,9 @@ disabled = false
 
 [terraform]
 format = "[🏎💨 $version$workspace]($style) "
+
+[username]
+style_root = "bold dimmed red"
+style_user = "bold dimmed green"
+format = '[$user]($style)@'
+show_always = true
