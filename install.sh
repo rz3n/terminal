@@ -67,7 +67,7 @@ get_vimrc() {
 
 get_starship() {
   curl -L https://raw.githubusercontent.com/$REPO/$BRANCH/starship.toml -o $HOME/.config/starship.toml
-  sh -c "$(curl -fsSL https://starship.rs/install.sh)" -- -f
+  sudo sh -c "$(curl -fsSL https://starship.rs/install.sh)" -- -f
 }
 
 
