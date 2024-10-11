@@ -1,109 +1,142 @@
 # ~/.config/starship.toml
 
-format = """\
-$username\
-$hostname\
-$shell\
-$directory\
-$git_branch\
-$git_state\
-$git_status\
-$character"""
+format             = """\
+  $username\
+  $hostname\
+  $directory\
+  $character
+"""
 
-right_format = """\
-$cmd_duration\
-$time"""
+#right_format = """$all"""
+right_format       = """\
+  $cmd_duration\
+  $kubernetes\
+  $git_state\
+  $git_status\
+  $git_metrics\
+  $custom\
+  $git_branch
+"""
 
-add_newline = false
+add_newline        = false
 
 # makes prompt a single line
 [line_break]
-disabled = true
+disabled           = true
 
 [character]
-format = "$symbol "
-success_symbol = "[❯](bold #98c379)"
-error_symbol = "[❯](bold red)"
-#vimcd_symbol = "[❮](bold #98c379)"
-
-[shell]
-bash_indicator = "$_"
-fish_indicator = ""
-zsh_indicator = "z_"
-powershell_indicator = "_"
-unknown_indicator = "mystery shell"
-style = "bold green"
-disabled = true
+error_symbol       = "[❯](bold red)"
+format             = "$symbol "
+success_symbol     = "[❯](bold #98c379)"
+#vimcd_symbol      = "[❮](bold #98c379)"
 
 [hostname]
-format = "[$hostname](bold green) "
-ssh_only = false
+format             = "@[$hostname](bold green) "
+ssh_only           = true
+
+[custom.gitRepoName]
+command            = 'sh -c "basename -s .git $(git config --get remote.origin.url)"'
+format             = '[  $output ]($style)'
+style              = "#dc4d01"
+detect_folders     = ['.git']
 
 [aws]
-symbol = "  "
-style = "bold #ff8028"
+format             = '[$symbol(prof: $profile )(\(reg: $region\) )]($style)'
+style              = 'bold blue'
+symbol             = '🅰 '
+
+[aws.region_aliases]
+ap-southeast-2     = 'au'
+us-east-1          = 'va'
 
 [cmd_duration]
-min_time = 10_000
-format = " [$duration]($style) "
-style = "#777777"
+format             = " [$duration]($style) "
+min_time           = 10_000
+style              = "#777777"
 
 [directory]
-format = "[$path]($style)[$lock_symbol]($lock_style) "
-home_symbol = " ⌂ "
-read_only = " "
-style = "bold #6080eb"
-truncate_to_repo = true
-truncation_length = 4
+format             = "[$path]($style)[$lock_symbol]($lock_style) "
+home_symbol        = "~"
+read_only          = " "
+style              = "bold #89b4fa"
+truncate_to_repo   = true
+truncation_length  = 4
+truncation_symbol  = "../"
 
 [docker_context]
-symbol = " "
-style = "#508bbb"
+symbol             = " "
+style              = "#508bbb"
+
+[gcloud]
+format             = 'on [$symbol$account(@$domain)(\($project\))]($style) '
 
 [git_branch]
-format = "[$symbol$branch]($style) "
-style = "bold #8ecc7d"
-symbol = " "
-truncation_symbol = ""
+format             = "[$symbol$branch(: $remote_branch)]($style) "
+style              = "bold #8ecc7d"
+symbol             = "@ "
+truncation_symbol  = ""
+
+[git_commit]
+commit_hash_length = 4
+
+[git_metrics]
+added_style        = "fg              : #FCF392"
+deleted_style      = "fg              : bright-red"
+disabled           = false
+format             = "([+$added]($added_style))[]($added_style)"
+
+[git_status]
+ahead              = '⇡${count}'
+behind             = '⇣${count}'
+diverged           = '⇕⇡${ahead_count}⇣${behind_count}'
+staged             = '[++\($count\)](green)'
 
 [golang]
-symbol = " "
+symbol             = " "
 
 [java]
-symbol = " "
+symbol             = " "
+
+[kubernetes]
+detect_files       = ['Dockerfile']
+format             = '[$symbol$context( \($namespace\))]($style) in '
+style              = "#AA336A"
+symbol             = "☸ "
 
 [memory_usage]
-symbol = " "
+symbol             = " "
 
 [nix_shell]
-symbol = " "
+symbol             = " "
 
 [package]
-disabled = true
-symbol = " "
+disabled           = true
+symbol             = " "
 
 [php]
-symbol = " "
+symbol             = " "
+detect_files       = ['*.php']
 
 [python]
-symbol = " "
+symbol             = " "
+detect_files       = ['*.py']
 
 [ruby]
-symbol = " "
+symbol             = " "
 
 [shlvl]
-symbol = " "
+symbol             = " "
 
 [time]
-time_format = "%r"
-format = "[჻](fg:#dddddd)[ $time ](fg:#777777)"
-disabled = false
+disabled           = false
+format             = "[჻](fg:#dddddd)[ $time ](fg:#777777)"
+time_format        = "%R"
 
 [terraform]
-format = "[🏎💨 $version$workspace]($style) "
+format             = "[🏎💨 $version$workspace]($style) "
 
 [username]
-style_root = "bold dimmed red"
-style_user = "bold dimmed green"
-format = '[$user]($style)@'
-show_always = true
+format             = '[$user]($style)'
+show_always        = false
+style_root         = "bold dimmed red"
+style_user         = "bold dimmed green"
